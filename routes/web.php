@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verify')->name('user.verify');
+
+Route::middleware('auth')->group(function ($route) {
+    $route->get('/', function () {
+        return view('home');
+    });
+});
+
+Route::get('/mailtest', function () {
+    $user = App\Models\User::find(1);
+    return new App\Mail\WelcomeMail($user);
+});
