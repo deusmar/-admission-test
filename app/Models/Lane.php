@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lane extends Model
 {
-    //
+    protected $table = "lanes";
 }
