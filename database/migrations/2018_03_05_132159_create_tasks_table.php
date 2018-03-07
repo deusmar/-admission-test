@@ -22,7 +22,7 @@ class CreateTasksTable extends Migration
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users')->onDelete('set null');
-            $table->foreign('lane_id')->references('id')->on('lanes')->onDelete('set default');
+            $table->foreign('lane_id')->references('id')->on('lanes')->onDelete('set null');
         });
     }
 
