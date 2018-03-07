@@ -19,9 +19,13 @@ Route::middleware('auth')->group(function ($route) {
     $route->get('/', function () {
         return view('home');
     });
+
+    $route->resource('/lanes','LaneController');
 });
 
 Route::get('/mailtest', function () {
     $user = App\Models\User::find(1);
     return new App\Mail\WelcomeMail($user);
 });
+
+

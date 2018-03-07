@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LaneRequest;
 use App\Models\Lane;
-use Illuminate\Http\Request;
 
 class LaneController extends Controller
 {
@@ -14,60 +14,30 @@ class LaneController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $lanes = Lane::all();
+        return response()->json(["lanes" => $lanes], 200);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\LaneRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LaneRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Lane  $lane
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Lane $lane)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Lane  $lane
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Lane $lane)
-    {
-        //
+        Lane::create($request->toArray());
+        return response()->json(200);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lane  $lane
+     * @param  \App\Http\Requests\LaneRequest $request
+     * @param  \App\Models\Lane $lane
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lane $lane)
+    public function update(LaneRequest $request, Lane $lane)
     {
         //
     }
@@ -75,7 +45,7 @@ class LaneController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Lane  $lane
+     * @param  \App\Models\Lane $lane
      * @return \Illuminate\Http\Response
      */
     public function destroy(Lane $lane)
